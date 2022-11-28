@@ -21,12 +21,12 @@ public class TestCurrencyConvertor {
          double result = CurrencyConvertor.convert(amount, from, to, conversion);
          assertEquals(740.0, result, 0.0);
         //test if amount entered is less than 0 or more than 10000
-            //amount = -1;
-            //result = CurrencyConvertor.convert(amount, from, to, conversion);
-            //assertEquals(0.0, result, 0.0);
-            //amount = 20000;
-            //result = CurrencyConvertor.convert(amount, from, to, conversion);
-            //assertEquals(0.0, result, 0.0);
+        // amount = -1;
+        // result = CurrencyConvertor.convert(amount, from, to, conversion);
+        // assertEquals(0.0, result, 0.0);
+        // amount = 20000;
+        // result = CurrencyConvertor.convert(amount, from, to, conversion);
+        // assertEquals(0.0, result, 0.0);
     }
 
     @Test
@@ -41,14 +41,14 @@ public class TestCurrencyConvertor {
         double result = CurrencyConvertor.convert(amount, from, to, conversion);
         assertEquals(740.0, result, 0.0);
         //test if currency entered is invalid
-        //from = "KYD";
-        //to = "CAD";
-        //result = CurrencyConvertor.convert(amount, from, to, conversion);
-        //assertEquals(0.0, result, 0.0);
-        //from = "USD";
-        //to = "KYD";
-        //result = CurrencyConvertor.convert(amount, from, to, conversion);
-        //assertEquals(0.0, result, 0.0);
+        // from = "KYD";
+        // to = "CAD";
+        // result = CurrencyConvertor.convert(amount, from, to, conversion);
+        // assertEquals(0.0, result, 0.0);
+        // from = "USD";
+        // to = "KYD";
+        // result = CurrencyConvertor.convert(amount, from, to, conversion);
+        // assertEquals(0.0, result, 0.0);
     }
     //------------------------BLACK BOX TESTING-----------------------//
 } 
