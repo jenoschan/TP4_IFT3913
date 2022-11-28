@@ -51,4 +51,60 @@ public class TestCurrencyConvertor {
         // assertEquals(0.0, result, 0.0);
     }
     //------------------------BLACK BOX TESTING-----------------------//
+
+    //------------------------WHITE BOX TESTING-----------------------//
+
+    // test if the instructions going through the if when the from currency is wrong
+    // execute properly
+
+    public void testWrongCurrency1(){
+        double amount = 1000;
+        String from = "AAA";
+        String to = "CAD";
+        CurrencyConversion conversion = new CurrencyConversion();
+        conversion.getRates().put("USD", 1.0);
+        conversion.getRates().put("CAD", 0.74);
+        double result = CurrencyConvertor.convert(amount, from, to, conversion);
+        assertEquals(0.0, result, 0.0);
+
+    }
+
+    // test if the instructions going through the if when the to currency is wrong
+    // execute properly
+
+    public void testWrongCurrency2(){
+        double amount = 1000;
+        String from = "USD";
+        String to = "AAA";
+        CurrencyConversion conversion = new CurrencyConversion();
+        conversion.getRates().put("USD", 1.0);
+        conversion.getRates().put("CAD", 0.74);
+        double result = CurrencyConvertor.convert(amount, from, to, conversion);
+        assertEquals(0.0, result, 0.0);
+    }
+
+    // test if both currencies are wrong
+    public void testBothWrongCurrency(){
+        double amount = 1000;
+        String from = "BBB";
+        String to = "AAA";
+        CurrencyConversion conversion = new CurrencyConversion();
+        conversion.getRates().put("USD", 1.0);
+        conversion.getRates().put("CAD", 0.74);
+        double result = CurrencyConvertor.convert(amount, from, to, conversion);
+        assertEquals(0.0, result, 0.0);
+    }
+
+
+    public void testBothRightCurrency(){
+        double amount = 1000;
+        String from = "USD";
+        String to = "CAD";
+        CurrencyConversion conversion = new CurrencyConversion();
+        conversion.getRates().put("USD", 1.0);
+        conversion.getRates().put("CAD", 0.74);
+        double result = CurrencyConvertor.convert(amount, from, to, conversion);
+        assertEquals(0.0, result, 0.0);
+    }
+
 } 
