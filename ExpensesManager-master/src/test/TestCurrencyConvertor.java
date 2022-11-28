@@ -2,9 +2,8 @@ import java.beans.Transient;
 import java.util.Currency;
 
 public class TestCurrencyConvertor {
-    //BLACK BOX TESTING
+    //------------------------BLACK BOX TESTING-----------------------//
     //see report for more details on the coverage
-    
    @Test 
    // test if amount entered is between 0 and 10000
     public void testAmount() {
@@ -49,4 +48,5 @@ public class TestCurrencyConvertor {
         result = convertor.convert(amount, from, to, conversion);
         assertEquals(0.0, result, 0.0);
     }
+    //------------------------BLACK BOX TESTING-----------------------//
 } 
