@@ -92,13 +92,15 @@ public class TestCurrencyConvertor {
         CurrencyConversion conversion = new CurrencyConversion();
         conversion.getRates().put("USD", 1.0);
         conversion.getRates().put("CAD", 0.74);
-        double result = CurrencyConvertor.convert(amount, from, to, conversion);
-        assertEquals(0.0, result, 0.0);
+        assertThrow(ParseException.class,
+        () -> {
+            CurrencyConvertor.convert(amount, from, to, conversion);
+        });
     }
 
     @Test
     public void testBothRightCurrency() throws ParseException{
-        double amount = 1000;
+        double amount = 0;
         String from = "USD";
         String to = "CAD";
         CurrencyConversion conversion = new CurrencyConversion();
