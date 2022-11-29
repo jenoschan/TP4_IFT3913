@@ -22,12 +22,18 @@ public class TestCurrencyConvertor {
          double result = CurrencyConvertor.convert(amount, from, to, conversion);
          assertEquals(740.0, result, 0.0);
         //test if amount entered is less than 0 or more than 10000
-        // amount = -1;
-        // result = CurrencyConvertor.convert(amount, from, to, conversion);
-        // assertEquals(0.0, result, 0.0);
-        // amount = 20000;
-        // result = CurrencyConvertor.convert(amount, from, to, conversion);
-        // assertEquals(0.0, result, 0.0);
+        try{
+            amount = -1;
+            result = CurrencyConvertor.convert(amount, from, to, conversion);
+        }catch(Exception e){
+            assertEquals("Amount entered is less than 0", e.getMessage());
+        }
+        try{
+            amount = 20000;
+            result = CurrencyConvertor.convert(amount, from, to, conversion);
+        }catch(Exception e){
+            assertEquals("Amount entered is more than 10000", e.getMessage());
+        }
     }
 
     @Test
