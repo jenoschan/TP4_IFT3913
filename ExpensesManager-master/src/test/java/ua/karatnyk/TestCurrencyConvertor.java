@@ -56,8 +56,8 @@ public class TestCurrencyConvertor {
 
     // test if the instructions going through the if when the from currency is wrong
     // execute properly
-
-    public void testWrongCurrency1(){
+    @Test
+    public void testWrongCurrency1() throws ParseException{
         double amount = 1000;
         String from = "AAA";
         String to = "CAD";
@@ -71,8 +71,8 @@ public class TestCurrencyConvertor {
 
     // test if the instructions going through the if when the to currency is wrong
     // execute properly
-
-    public void testWrongCurrency2(){
+    @Test
+    public void testWrongCurrency2() throws ParseException{
         double amount = 1000;
         String from = "USD";
         String to = "AAA";
@@ -84,7 +84,8 @@ public class TestCurrencyConvertor {
     }
 
     // test if both currencies are wrong
-    public void testBothWrongCurrency(){
+    @Test
+    public void testBothWrongCurrency() throws ParseException{
         double amount = 1000;
         String from = "BBB";
         String to = "AAA";
@@ -95,8 +96,8 @@ public class TestCurrencyConvertor {
         assertEquals(0.0, result, 0.0);
     }
 
-
-    public void testBothRightCurrency(){
+    @Test
+    public void testBothRightCurrency() throws ParseException{
         double amount = 1000;
         String from = "USD";
         String to = "CAD";
