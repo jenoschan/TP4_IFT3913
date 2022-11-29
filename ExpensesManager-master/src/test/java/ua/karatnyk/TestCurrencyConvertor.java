@@ -3,6 +3,7 @@ import static org.junit.Assert.*;
 import java.text.ParseException;
 import org.junit.Test;
 
+import junit.framework.Assert;
 import ua.karatnyk.impl.CurrencyConversion;
 import ua.karatnyk.impl.CurrencyConvertor;
 
@@ -41,14 +42,21 @@ public class TestCurrencyConvertor {
         double result = CurrencyConvertor.convert(amount, from, to, conversion);
         assertEquals(740.0, result, 0.0);
         //test if currency entered is invalid
-        // from = "KYD";
-        // to = "CAD";
-        // result = CurrencyConvertor.convert(amount, from, to, conversion);
-        // assertEquals(0.0, result, 0.0);
-        // from = "USD";
-        // to = "KYD";
-        // result = CurrencyConvertor.convert(amount, from, to, conversion);
-        // assertEquals(0.0, result, 0.0);
+        try {
+        from = "KYD";
+        to = "CAD";
+        result = CurrencyConvertor.convert(amount, from, to, conversion);
+        }
+        catch (ParseException e) {
+            assertEquals("Not correct format currency", e.getMessage());
+        }
+        try{
+            from = "USD";
+            to = "KYD";
+            result = CurrencyConvertor.convert(amount, from, to, conversion);
+        } catch (ParseException e) {
+            assertEquals("Not correct format currency", e.getMessage());
+        }
     }
     //------------------------BLACK BOX TESTING-----------------------//
 
@@ -58,6 +66,7 @@ public class TestCurrencyConvertor {
     // execute properly
     @Test
     public void testWrongCurrency1() throws ParseException{
+        try {
         double amount = 1000;
         String from = "AAA";
         String to = "CAD";
@@ -65,14 +74,17 @@ public class TestCurrencyConvertor {
         conversion.getRates().put("USD", 1.0);
         conversion.getRates().put("CAD", 0.74);
         double result = CurrencyConvertor.convert(amount, from, to, conversion);
-        assertEquals(0.0, result, 0.0);
-
+        assertEquals(740.0, result, 0.0);
+        } catch (ParseException e) {
+            assertEquals("Not correct format currency", e.getMessage());
+        }	
     }
 
     // test if the instructions going through the if when the to currency is wrong
     // execute properly
     @Test
     public void testWrongCurrency2() throws ParseException{
+        try {
         double amount = 1000;
         String from = "USD";
         String to = "AAA";
@@ -80,26 +92,32 @@ public class TestCurrencyConvertor {
         conversion.getRates().put("USD", 1.0);
         conversion.getRates().put("CAD", 0.74);
         double result = CurrencyConvertor.convert(amount, from, to, conversion);
-        assertEquals(0.0, result, 0.0);
+        assertEquals(740.0, result, 0.0);
+        } catch (ParseException e) {
+            assertEquals("Not correct format currency", e.getMessage());
+        }
     }
 
     // test if both currencies are wrong
     @Test
     public void testBothWrongCurrency() throws ParseException{
+        try {
         double amount = 1000;
         String from = "BBB";
         String to = "AAA";
         CurrencyConversion conversion = new CurrencyConversion();
         conversion.getRates().put("USD", 1.0);
         conversion.getRates().put("CAD", 0.74);
-        assertThrow(ParseException.class,
-        () -> {
-            CurrencyConvertor.convert(amount, from, to, conversion);
-        });
+        double result = CurrencyConvertor.convert(amount, from, to, conversion);
+        assertEquals(740.0, result, 0.0);
+        } catch (ParseException e) {
+            assertEquals("Not correct format currency", e.getMessage());
+        }
     }
 
     @Test
     public void testBothRightCurrency() throws ParseException{
+        try {
         double amount = 0;
         String from = "USD";
         String to = "CAD";
@@ -108,6 +126,9 @@ public class TestCurrencyConvertor {
         conversion.getRates().put("CAD", 0.74);
         double result = CurrencyConvertor.convert(amount, from, to, conversion);
         assertEquals(0.0, result, 0.0);
+        } catch (ParseException e) {
+            assertEquals("Not correct format currency", e.getMessage());
+        }
     }
 
 } 
